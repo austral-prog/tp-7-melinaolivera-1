@@ -1,61 +1,47 @@
-def index_of(target, strings):
-    for i, s in enumerate(strings):
-        if s == target:
-            return i
-    return -1  
+def index_of_by_index(string, lst, start_index):
+    try:
+        return lst.index(string, start_index)
+    except ValueError:
+        return -1
 
+def index_of_empty(lst):
+    try:
+        return lst.index("")
+    except ValueError:
+        return -1
 
-def index_of_by_index(target, strings, start_index):
-    for i in range(start_index, len(strings)):
-        if strings[i] == target:
-            return i
-    return -1 
+def index_of(string, lst):
+    try:
+        return lst.index(string)
+    except ValueError:
+        return -1
 
+def put(string, lst):
+    index = index_of_empty(lst)
+    if index != -1:
+        lst[index] = string
+    return index
 
-def index_of_empty(strings):
-    for i, s in enumerate(strings):
-        if s == "":
-            return i
-    return -1  
-
-
-def put(target, strings):
-    empty_index = index_of_empty(strings)
-    if empty_index != -1:
-        strings[empty_index] = target
-    return empty_index   
-
-
-def remove(target, strings):
+def remove(string, lst):
     count = 0
-    for i, s in enumerate(strings):
-        if s == target:
-            strings[i] = ""
+    for i in range(len(lst)):
+        if lst[i] == string:
+            lst[i] = ""
             count += 1
-    return count  
+    return count  # El return debe estar fuera del ciclo para contar todas las ocurrencias
 
-
+# Pruebas
 colors = ["Red", "Green", "White", "Black", "Pink", "Yellow", "Black"]
+print(index_of("Black", colors))  # Debe retornar 3
+print(index_of("Blue", colors))   # Debe retornar -1
+print(index_of_by_index("Black", colors, 1))  # Debe retornar 3
+print(index_of_by_index("Black", colors, 4))  # Debe retornar 6
+print(index_of_by_index("Green", colors, 2))  # Debe retornar -1
 
-
-print(index_of("Black", colors)) 
-print(index_of("Blue", colors))   
-
-
-print(index_of_by_index("Black", colors, 1)) 
-print(index_of_by_index("Black", colors, 4))  
-print(index_of_by_index("Green", colors, 2))  
-
-
-print(index_of_empty(colors)) 
-
-colors_with_empty = ["Red", "Green", "", "", "Pink", "", "Black"]
-print(index_of_empty(colors_with_empty)) 
-
-
-print(put("Blue", colors_with_empty)) 
-print(put("Blue", colors))  
-
-
-print(remove("Black", colors))  
-print(remove("Blue", colors))  
+colors1 = ["Red", "Green", "", "", "Pink", "", "Black"]
+colors2 = ["Red", "Green", "White", "Black", "Pink", "Yellow", "Black"]
+print(index_of_empty(colors1))  # Debe retornar 2
+print(index_of_empty(colors2))  # Debe retornar -1
+print(put("Blue", colors1))     # Debe retornar 2 (y colocar "Blue" en el índice 2)
+print(remove("Black", colors))  # Debe retornar 2 (ya que hay dos "Black" en la lista)
+print(remove("Blue", colors))
