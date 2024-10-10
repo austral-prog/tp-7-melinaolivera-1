@@ -1,18 +1,20 @@
-def enumerate_list(strings):
+def enumerate_list(lst):
     result = []
-    for index, value in enumerate(strings):
-        if value:  # Solo agrega si el string no está vacío
-            result.append(f"{index}. {value}")
+    counter = 0
+    for item in lst:
+        if item:
+            result.append(f"{counter}. {item}")
+            counter += 1
     return result
 
-colors = ["Red", "Green", "", "White", "Black"]
-print(enumerate_list(colors))
-        
-def enumerate_backwards(strings):
+
+def enumerate_backwards(lst):
+
     result = []
-    for index, value in enumerate(strings):
-        if value:
-            result.append(f"{index}. {value[ : :-1]}")
+    counter = 0
+    for item in lst:
+        if item:
+            reversed_item = item[::-1]
+            result.append(f"{counter}. {reversed_item}")
+            counter += 1
     return result
-colors = ["Red", "Green", " ", "White", "Black"]
-print(enumerate_backwards(colors))
