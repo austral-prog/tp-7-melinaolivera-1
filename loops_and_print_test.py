@@ -1,3 +1,6 @@
+import unittest  
+import loops_and_print as ex1
+
 class TP7LoopsAndPrintTest(unittest.TestCase):
 
     def test_enumerate_list(self):
